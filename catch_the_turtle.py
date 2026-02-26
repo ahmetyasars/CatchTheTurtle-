@@ -17,6 +17,10 @@ score_turtle = turtle.Turtle()
 #countdown turtle
 countdown_turtle = turtle.Turtle()
 
+def update_score():
+    score_turtle.clear()
+    score_turtle.write("Score: {}".format(score), move=False, align="center", font=FONT)
+
 def setup_score_turtle():
     score_turtle.hideturtle()
     score_turtle.color("dark blue")
@@ -25,7 +29,7 @@ def setup_score_turtle():
     top_height = turtle_screen.window_height() / 2
     y = top_height * 0.9
     score_turtle.goto(0, y)
-    score_turtle.write(arg="Score: 0", move=False, align="center", font=FONT)
+    update_score()
 
 def setup_turtles():
     turtles.shape("turtle")
@@ -36,8 +40,7 @@ def setup_turtles():
     def hand_click(x,y):
         global score
         score += 1
-        turtles.clear()
-        score_turtle.write("Score: {}".format(score), move = False, align="center", font=FONT)
+        update_score()
     turtles.onclick(hand_click)
 
 def move_turtle_randomly():
@@ -48,7 +51,7 @@ def move_turtle_randomly():
         y = random.randint(-300, 300)
         turtles.goto(x, y)
         turtles.showturtle()
-        turtle_screen.ontimer(move_turtle_randomly, 500)#x milisaniyede bir hareket etsin
+        turtle_screen.ontimer(move_turtle_randomly, 1000)#x milisaniyede bir hareket etsin
 
 def countdown(time):
     global game_over
